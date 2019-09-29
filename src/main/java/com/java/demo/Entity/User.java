@@ -1,13 +1,25 @@
 package com.java.demo.Entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
+import javax.persistence.*;
 
 @Entity
 public class User {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column
-    String userName;
+    private Integer userId;
+
+    @Column
+    private String userName;
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
 
     public String getUserName() {
         return userName;

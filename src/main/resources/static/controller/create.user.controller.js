@@ -5,16 +5,28 @@
         .module('DemoApp')
         .controller('CreateUserController', CreateUserController);
 
-    CreateUserController.$inject = ['$state'];
+    CreateUserController.$inject = ['$state', 'UserFactory'];
 
-    function CreateUserController($state) {
+    function CreateUserController($state, UserFactory) {
         var vm = this;
 
-        console.log("create user works!!!!!!");
+        vm.userName = null;
 
-        vm.viewUsers = viewUsers;
+        vm.goToViewUsersPage = goToViewUsersPage;
+        vm.submitUser = submitUser;
 
-        function viewUsers() {
+        function submitUser() {
+            var userDto = {
+                userName: vm.userName
+            };
+            UserFactory.submitUser(userDto).then(function (response) {
+                $state.go('root.viewUsers');
+            }, function (error) {
+                console.log(error);
+            })
+        }
+
+        function goToViewUsersPage() {
             $state.go('root.viewUsers');
         }
     }

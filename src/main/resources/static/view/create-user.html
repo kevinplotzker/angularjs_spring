@@ -1,2 +1,9 @@
 <h1>Create User page</h1>
-<button ng-click ="vm.viewUsers()">View Users page</button>
+<button ng-click ="vm.goToViewUsersPage()">View Users Page</button>
+
+<div layout="row">
+    <md-input-container>
+        <input type="text" ng-model="vm.userName" />
+    </md-input-container>
+    <md-button class="md-primary" ng-click="vm.submitUser()">Submit User</md-button>
+</div>

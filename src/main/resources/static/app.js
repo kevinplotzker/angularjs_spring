@@ -14,7 +14,7 @@ myApp.config(['$stateProvider', '$locationProvider', '$urlRouterProvider', '$ocL
     };
 
     // $locationProvider.html5Mode(true);
-
+    //
     // $locationProvider.html5Mode({
     //     enabled: true,
     //     requireBase: true
@@ -42,9 +42,6 @@ myApp.config(['$stateProvider', '$locationProvider', '$urlRouterProvider', '$ocL
         })
         .state('root.viewUsers', {
             url: '/viewUsers',
-            // data: {
-            //     authenticated: true
-            // },
             views: {
                 'container@': {
                     templateUrl: 'view/view-users.html',
@@ -52,14 +49,12 @@ myApp.config(['$stateProvider', '$locationProvider', '$urlRouterProvider', '$ocL
                 }
             },
             resolve: resolve('viewUsers', [
-                'controller/view.users.controller.js'
+                'controller/view.users.controller.js',
+                'factory/user.factory.js'
             ])
         })
         .state('root.createUser', {
             url: '/createUser',
-            // data: {
-            //     authenticated: true
-            // },
             views: {
                 'container@': {
                     templateUrl: 'view/create-user.html',
@@ -67,33 +62,8 @@ myApp.config(['$stateProvider', '$locationProvider', '$urlRouterProvider', '$ocL
                 }
             },
             resolve: resolve('createUser', [
-                'controller/create.user.controller.js'
+                'controller/create.user.controller.js',
+                'factory/user.factory.js'
             ])
         })
-        // .state('root',{
-        //     url: '',
-        //     abstract: true,
-        //     views: {
-        //         'header': {
-        //             templateUrl: 'static/view/header.html',
-        //             controller: 'HeaderController as vm'
-        //         }
-        //     },
-        //     resolve: resolve('root', [
-        //         'controller/header.controller.js'
-        //     ])
-        // })
-        // .state('root.dash', {
-        //     url: '/dash',
-        //     views: {
-        //         'container@' : {
-        //             templateUrl: 'view/dash.html',
-        //             controller: 'DashController as vm'
-        //         }
-        //     },
-        //     resolve: resolve('dash', [
-        //         'controller/dash.controller.js'
-        //     ])
-        // });
-
 }]);

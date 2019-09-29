@@ -5,16 +5,35 @@
         .module('DemoApp')
         .controller('ViewUsersController', ViewUsersController);
 
-    ViewUsersController.$inject = ['$state'];
+    ViewUsersController.$inject = ['$state', '$q', 'UserFactory'];
 
-    function ViewUsersController($state) {
+    function ViewUsersController($state, $q, UserFactory) {
         var vm = this;
 
-        console.log("view user works!!!!!!");
+        vm.users = [];
 
-        vm.createUser = createUser;
+        vm.goToCreateUserPage = goToCreateUserPage;
 
-        function createUser() {
+        initialize();
+
+        function initialize() {
+            var promises = {
+                getUsers: getUsers()
+            };
+            $q.all(promises).then(function (response) {
+                vm.users = response.getUsers;
+            });
+        }
+
+        function getUsers() {
+            return UserFactory.getUsers().then(function (response) {
+                return response.data;
+            }, function (error) {
+                alert('error retrieving users');
+            })
+        }
+
+        function goToCreateUserPage() {
             $state.go('root.createUser');
         }
     }
