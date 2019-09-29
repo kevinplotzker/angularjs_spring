@@ -1,6 +1,6 @@
-package com.java.demo.Service;
+package com.java.demo.service;
 
-import com.java.demo.DTO.UserDto;
+import com.java.demo.dto.UserDto;
 
 import java.util.Set;
 

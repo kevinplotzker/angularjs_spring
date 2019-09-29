@@ -1,4 +1,4 @@
-package com.java.demo.DTO;
+package com.java.demo.dto;
 
 public class UserDto {
 

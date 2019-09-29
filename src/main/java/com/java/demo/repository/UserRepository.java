@@ -1,6 +1,6 @@
-package com.java.demo.Repository;
+package com.java.demo.repository;
 
-import com.java.demo.Entity.User;
+import com.java.demo.entity.User;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.Set;

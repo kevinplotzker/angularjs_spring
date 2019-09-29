@@ -1,8 +1,7 @@
-package com.java.demo.Controller;
+package com.java.demo.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 @Controller
 public class HomeController {
@@ -10,5 +9,11 @@ public class HomeController {
     @RequestMapping("/")
     public String home() {
         return "view/index.html";
+    }
+
+    @RequestMapping(value = "/**/{[path:[^\\.]*}")
+    public String redirect() {
+        // Forward to home page so that route is preserved.
+        return "forward:/";
     }
 }

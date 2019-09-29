@@ -1,7 +1,7 @@
 var myApp = angular
     .module('DemoApp', ['ui.router', 'oc.lazyLoad', 'ngMaterial', 'ngMessages', 'ngAnimate']);
 
-myApp.config(['$stateProvider', '$locationProvider', '$urlRouterProvider', '$ocLazyLoadProvider', function($stateProvider, $locationProvider, $urlRouterProvider, $ocLazyLoadProvider) {
+myApp.config(['$stateProvider', '$locationProvider', '$urlRouterProvider', '$ocLazyLoadProvider', '$urlMatcherFactoryProvider', function($stateProvider, $locationProvider, $urlRouterProvider, $ocLazyLoadProvider, $urlMatcherFactoryProvider) {
     var resolve = function resolve(name, files) {
         return {
             load: function ($ocLazyLoad) {
@@ -12,13 +12,8 @@ myApp.config(['$stateProvider', '$locationProvider', '$urlRouterProvider', '$ocL
             }
         }
     };
-
-    // $locationProvider.html5Mode(true);
-    //
-    // $locationProvider.html5Mode({
-    //     enabled: true,
-    //     requireBase: true
-    // });
+    $locationProvider.html5Mode(true);
+    $urlMatcherFactoryProvider.strictMode(true);
     $urlRouterProvider.otherwise('/viewUsers');
     // $ocLazyLoadProvider.config({
     //     loadedModules: ['DemoApp'],

@@ -1,7 +1,7 @@
-package com.java.demo.Controller;
+package com.java.demo.controller;
 
-import com.java.demo.DTO.UserDto;
-import com.java.demo.Service.UserService;
+import com.java.demo.dto.UserDto;
+import com.java.demo.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -28,7 +28,7 @@ public class UserController {
     }
 
     @PostMapping(value = "/user")
-    private ResponseEntity<?> getUsers(@RequestBody UserDto dto) {
+    private ResponseEntity<?> submitUser(@RequestBody UserDto dto) {
         try {
             userService.submitUser(dto);
             return new ResponseEntity<>(HttpStatus.OK);
