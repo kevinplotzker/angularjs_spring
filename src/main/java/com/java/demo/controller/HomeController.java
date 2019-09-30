@@ -8,7 +8,7 @@ public class HomeController {
 
     @RequestMapping("/")
     public String home() {
-        return "view/index.html";
+        return "index.html";
     }
 
     @RequestMapping(value = "/**/{[path:[^\\.]*}")

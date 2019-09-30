@@ -1,9 +1,9 @@
-package com.java.demo.Service.impl;
+package com.java.demo.service.impl;
 
-import com.java.demo.DTO.UserDto;
-import com.java.demo.Entity.User;
-import com.java.demo.Repository.UserRepository;
-import com.java.demo.Service.UserService;
+import com.java.demo.dto.UserDto;
+import com.java.demo.entity.User;
+import com.java.demo.repository.UserRepository;
+import com.java.demo.service.UserService;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
