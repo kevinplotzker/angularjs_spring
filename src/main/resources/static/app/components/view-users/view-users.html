@@ -1,9 +1,27 @@
-<md-card style="height: 1200px; margin-top:64px;">
+<md-card>
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2 flex>Users</h2>
+            <md-menu>
+                <md-button ng-click="vm.openMenu($mdMenu, $event)" class="md-icon-button">
+                    <md-tooltip>
+                        <span>User Options</span>
+                    </md-tooltip>
+                    <md-icon md-font-set="material-icons">more_vert</md-icon>
+                </md-button>
+                <md-menu-content width="4">
+                    <md-menu-item>
+                        <md-button ng-disabled="!vm.selectedRow" ng-click="vm.editUser();">
+                            <md-icon md-font-set="material-icons" md-menu-align-target>edit</md-icon>
+                            <span>Edit User</span>
+                        </md-button>
+                    </md-menu-item>
+                </md-menu-content>
+            </md-menu>
+        </div>
+    </md-toolbar>
+    <md-card-content>
+        <div ui-grid="vm.usersGrid" ui-grid-selection="true" class="grid"></div>
+    </md-card-content>
 
-    <h1>View Users page</h1>
-    <button ng-click ="vm.goToCreateUserPage()">Create Users Page</button>
-
-    <div layout="column">
-        <span ng-repeat="user in vm.users">{{user.userName}}: {{user.userId}}</span>
-    </div>
 </md-card>

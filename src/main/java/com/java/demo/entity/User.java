@@ -1,6 +1,7 @@
 package com.java.demo.entity;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 public class User {
@@ -11,7 +12,22 @@ public class User {
     private Integer userId;
 
     @Column
-    private String userName;
+    private String firstName;
+    @Column
+    private String lastName;
+    @Column
+    private String emailAddress;
+    @Column
+    private String streetAddress;
+    @Column
+    private String city;
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "stateId")
+//    private State state;
+    @Column
+    private String zipCode;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date birthDate;
 
     public Integer getUserId() {
         return userId;
@@ -21,11 +37,59 @@ public class User {
         this.userId = userId;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getEmailAddress() {
+        return emailAddress;
+    }
+
+    public void setEmailAddress(String emailAddress) {
+        this.emailAddress = emailAddress;
+    }
+
+    public String getStreetAddress() {
+        return streetAddress;
+    }
+
+    public void setStreetAddress(String streetAddress) {
+        this.streetAddress = streetAddress;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getZipCode() {
+        return zipCode;
+    }
+
+    public void setZipCode(String zipCode) {
+        this.zipCode = zipCode;
+    }
+
+    public Date getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(Date birthDate) {
+        this.birthDate = birthDate;
     }
 }

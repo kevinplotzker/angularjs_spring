@@ -23,17 +23,33 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void submitUser(UserDto dto) {
+        userRepository.save(map(dto));
+    }
+
+    private User map(UserDto dto) {
         User user = new User();
-        user.setUserName(dto.getUserName());
-        userRepository.save(user);
+        user.setFirstName(dto.getFirstName());
+        user.setLastName(dto.getLastName());
+        user.setStreetAddress(dto.getStreetAddress());
+        user.setCity(dto.getCity());
+        user.setZipCode(dto.getZipCode());
+        user.setEmailAddress(dto.getEmailAddress());
+        user.setBirthDate(dto.getBirthDate());
+        return user;
     }
 
     private Set<UserDto> map(Set<User> users) {
         Set<UserDto> dtos = new HashSet<>();
         for (User u : users) {
             UserDto dto = new UserDto();
-            dto.setUserName(u.getUserName());
             dto.setUserId(u.getUserId());
+            dto.setFirstName(u.getFirstName());
+            dto.setLastName(u.getLastName());
+            dto.setEmailAddress(u.getEmailAddress());
+            dto.setStreetAddress(u.getStreetAddress());
+            dto.setCity(u.getCity());
+            dto.setZipCode(u.getZipCode());
+            dto.setBirthDate(u.getBirthDate());
             dtos.add(dto);
         }
         return dtos;

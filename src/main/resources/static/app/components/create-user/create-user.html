@@ -1,9 +1,113 @@
-<h1>Create User page</h1>
-<button ng-click ="vm.goToViewUsersPage()">View Users Page</button>
-
-<div layout="row">
-    <md-input-container>
-        <input type="text" ng-model="vm.userName" />
-    </md-input-container>
-    <md-button class="md-primary" ng-click="vm.submitUser()">Submit User</md-button>
-</div>
+<md-card>
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>Create New User</h2>
+        </div>
+    </md-toolbar>
+    <md-card-content>
+        <form name="createUserForm">
+            <h2>Enter User Details:</h2>
+            <div layout="row">
+                <md-input-container>
+                    <label>First Name</label>
+                    <input name="firstName"
+                           type="text"
+                           ng-model="vm.user.firstName"
+                           required />
+                    <div ng-messages="createUserForm.firstName.$error">
+                        <div ng-message="required">Please enter a first name</div>
+                    </div>
+                </md-input-container>
+                <md-input-container>
+                    <label>Last Name</label>
+                    <input name="lastName"
+                           type="text"
+                           ng-model="vm.user.lastName"
+                           required />
+                    <div ng-messages="createUserForm.lastName.$error">
+                        <div ng-message="required">Please enter a last name</div>
+                    </div>
+                </md-input-container>
+                <md-input-container>
+                    <label>Email Address</label>
+                    <input name="emailAddress"
+                           type="email"
+                           ng-model="vm.user.emailAddress"
+                           required />
+                    <div ng-messages="createUserForm.emailAddress.$error">
+                        <div ng-message="email">Must be a valid email address</div>
+                        <div ng-message="required">Please enter an email address</div>
+                    </div>
+                </md-input-container>
+            </div>
+            <div layout="row" layout-sm="column">
+                <md-input-container>
+                    <label>Street Address</label>
+                    <input name="streetAddress"
+                           type="text"
+                           ng-model="vm.user.streetAddress"
+                           required />
+                    <div ng-messages="createUserForm.streetAddress.$error">
+                        <div ng-message="required">Please enter a street address</div>
+                    </div>
+                </md-input-container>
+                <md-input-container>
+                    <label>City</label>
+                    <input name="city"
+                           type="text"
+                           ng-model="vm.user.city"
+                           required />
+                    <div ng-messages="createUserForm.city.$error">
+                        <div ng-message="required">Please enter a city</div>
+                    </div>
+                </md-input-container>
+                <md-input-container>
+                    <md-select placeholder="State"
+                               ng-model="vm.user.state"
+                               required>
+                        <md-option ng-repeat="state in vm.states"
+                                   ng-value="state.id">{{state.abbreviation}}</md-option>
+                    </md-select>
+                </md-input-container>
+                <md-input-container>
+                    <label>Zip Code</label>
+                    <input name="zipCode"
+                           type="text"
+                           pattern="^\s*?\d{5}(?:[-\s]\d{4})?\s*?$"
+                           ng-model="vm.user.zipCode"
+                           required />
+                    <div ng-messages="createUserForm.zipCode.$error">
+                        <div ng-message="required">Please enter a zip code</div>
+                        <div ng-message="pattern">Must be a valid zip code</div>
+                    </div>
+                </md-input-container>
+            </div>
+            <div>
+                <md-input-container>
+                    <label>Date of Birth</label>
+                    <md-datepicker ng-model="vm.user.birthDate"
+                                   md-current-view="year"
+                                   md-max-date="vm.today"
+                                   name="birthDate"
+                                   required></md-datepicker>
+                    <div ng-messages="createUserForm.birthDate.$error">
+                        <div ng-message="valid">Use a valid date format</div>
+                        <div ng-message="required">Please enter a birth date</div>
+                    </div>
+                </md-input-container>
+            </div>
+            <div>
+                <md-button class="md-raised"
+                           ng-click="vm.clearForm()">
+                    Reset
+                </md-button>
+                <md-button class="md-raised md-primary"
+                           ng-click="vm.submitUser()"
+                           ng-disabled="createUserForm.$invalid">
+                    Submit
+                </md-button>
+                <md-checkbox ng-model="vm.submitAdditional">Create Additional Users</md-checkbox>
+            </div>
+        </form>
+    </md-card-content>
+</md-card>

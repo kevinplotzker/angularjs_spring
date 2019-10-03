@@ -1,5 +1,5 @@
 var myApp = angular
-    .module('DemoApp', ['ui.router', 'oc.lazyLoad', 'ngMaterial', 'ngMessages', 'ngAnimate']);
+    .module('DemoApp', ['ui.router', 'oc.lazyLoad', 'ui.grid', 'ui.grid.selection', 'ngMaterial', 'ngMessages', 'ngAnimate']);
 
 myApp.config(['$stateProvider', '$locationProvider', '$urlRouterProvider', '$ocLazyLoadProvider', '$urlMatcherFactoryProvider', function($stateProvider, $locationProvider, $urlRouterProvider, $ocLazyLoadProvider, $urlMatcherFactoryProvider) {
     var resolve = function resolve(name, files) {
@@ -55,6 +55,9 @@ myApp.config(['$stateProvider', '$locationProvider', '$urlRouterProvider', '$ocL
                     templateUrl: 'app/components/create-user/create-user.html',
                     controller: 'CreateUserController as vm'
                 }
+            },
+            params: {
+                userId: null
             },
             resolve: resolve('createUser', [
                 'app/components/create-user/create.user.controller.js',
