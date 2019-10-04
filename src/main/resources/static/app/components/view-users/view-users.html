@@ -11,9 +11,21 @@
                 </md-button>
                 <md-menu-content width="4">
                     <md-menu-item>
-                        <md-button ng-disabled="!vm.selectedRow" ng-click="vm.editUser();">
+                        <md-button ng-click="vm.editUser(true);">
+                            <md-icon md-font-set="material-icons" md-menu-align-target>person_add</md-icon>
+                            <span>Create New User</span>
+                        </md-button>
+                    </md-menu-item>
+                    <md-menu-item>
+                        <md-button ng-disabled="!vm.selectedRow" ng-click="vm.editUser(false);">
                             <md-icon md-font-set="material-icons" md-menu-align-target>edit</md-icon>
                             <span>Edit User</span>
+                        </md-button>
+                    </md-menu-item>
+                    <md-menu-item>
+                        <md-button ng-disabled="!vm.selectedRow" ng-click="vm.deleteUser();">
+                            <md-icon md-font-set="material-icons" md-menu-align-target>delete</md-icon>
+                            <span>Delete User</span>
                         </md-button>
                     </md-menu-item>
                 </md-menu-content>

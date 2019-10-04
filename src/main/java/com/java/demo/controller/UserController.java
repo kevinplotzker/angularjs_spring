@@ -27,6 +27,32 @@ public class UserController {
         }
     }
 
+    @DeleteMapping(value = "/user/{userId}")
+    private ResponseEntity<?> deleteUser(@PathVariable Integer userId) {
+        try {
+            userService.deleteUser(userId);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping(value = "/user/{userId}")
+    private ResponseEntity<?> getUserById(@PathVariable Integer userId) {
+        try {
+            UserDto dto = userService.getUserById(userId);
+            return new ResponseEntity<>(dto, HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR;
+            if (e.getLocalizedMessage().equals("No user with this id exists.")) {
+                status = HttpStatus.NOT_FOUND;
+            }
+            return new ResponseEntity<>(status);
+        }
+    }
+
     @PostMapping(value = "/user")
     private ResponseEntity<?> submitUser(@RequestBody UserDto dto) {
         try {

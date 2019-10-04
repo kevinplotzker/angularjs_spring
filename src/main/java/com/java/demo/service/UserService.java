@@ -7,6 +7,7 @@ import java.util.Set;
 public interface UserService {
 
     void submitUser(UserDto userDto);
-
     Set<UserDto> getUsers();
+    UserDto getUserById(Integer userId);
+    void deleteUser(Integer userId);
 }

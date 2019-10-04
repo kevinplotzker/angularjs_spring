@@ -1,0 +1,23 @@
+<md-dialog>
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2 class="md-headline">{{vm.modalTitle}}</h2>
+        </div>
+    </md-toolbar>
+    <md-progress-linear md-mode="query" ng-disabled="!vm.processing"></md-progress-linear>
+    <md-dialog-content layout-padding>
+        <span layout="row" layout-align="start center">
+            <md-icon md-font-set="material-icons" md-menu-align-target>warning</md-icon>
+            <span class="span-delete-confirm">{{vm.modalText}}</span>
+            <span flex></span>
+        </span>
+    </md-dialog-content>
+    <md-dialog-actions>
+        <md-button ng-click="vm.cancel()">Cancel</md-button>
+        <md-button autofocus
+                   ng-disabled="vm.processing"
+                   class="md-raised md-primary"
+                   ng-click="vm.confirmDelete()">Confirm
+        </md-button>
+    </md-dialog-actions>
+</md-dialog>

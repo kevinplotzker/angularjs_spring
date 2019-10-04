@@ -11,3 +11,15 @@
     margin-top: 64px;
     overflow-y: auto;
 }
+
+.ng-untouched ~ .md-input-messages-animation {
+    height: 0;
+    opacity: 0;
+}
+
+md-toast.md-toast-error .md-toast-content {
+    background-color: red;
+}
+md-toast.md-toast-success .md-toast-content {
+    background-color: green;
+}

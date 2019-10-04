@@ -11,7 +11,9 @@
 
         var factory = {
             getUsers: getUsers,
-            submitUser: submitUser
+            getUser: getUser,
+            submitUser: submitUser,
+            deleteUser: deleteUser
         };
 
         return factory;
@@ -20,8 +22,16 @@
             return $http.get('v1/users');
         }
 
+        function getUser(userId) {
+            return $http.get('v1/user/' + userId);
+        }
+
         function submitUser(userDto) {
             return $http.post('v1/user', userDto);
+        }
+
+        function deleteUser(userId) {
+            return $http.delete('v1/user/' + userId);
         }
     }
 })();
