@@ -6,10 +6,8 @@ import com.java.demo.exception.ResourceNotFoundException;
 import com.java.demo.repository.UserRepository;
 import com.java.demo.service.UserService;
 import org.springframework.stereotype.Service;
-import sun.nio.ch.SelectorImpl;
 
 import javax.inject.Inject;
-import java.text.SimpleDateFormat;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -57,8 +55,6 @@ public class UserServiceImpl implements UserService {
         dto.setCity(u.getCity());
         dto.setZipCode(u.getZipCode());
         dto.setBirthDate(u.getBirthDate());
-        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/YYYY");
-        dto.setBirthDateString(sdf.format(u.getBirthDate()));
         return dto;
     }
 

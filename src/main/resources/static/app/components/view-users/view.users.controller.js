@@ -59,11 +59,10 @@
                 },
                 {
                     displayName: 'Date of Birth',
-                    field: 'birthDateString',
-                    cellTemplate: cellTemplate,
+                    field: 'birthDate',
+                    cellTemplate: '<div title="{{COL_FIELD | date:\'MM/dd/yyyy\'}}" class="ui-grid-cell-contents" style="cursor: pointer;">{{COL_FIELD | date:\'MM/dd/yyyy\'}}</div>',
                     headerTooltip: true,
-                    cellTooltip: true,
-                    type: 'date'
+                    cellTooltip: true
                 }
             ]
         };

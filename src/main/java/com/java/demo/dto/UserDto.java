@@ -12,7 +12,6 @@ public class UserDto {
     private String city;
     private String zipCode;
     private Date birthDate;
-    private String birthDateString;
 
     public Integer getUserId() {
         return userId;
@@ -76,13 +75,5 @@ public class UserDto {
 
     public void setBirthDate(Date birthDate) {
         this.birthDate = birthDate;
-    }
-
-    public String getBirthDateString() {
-        return birthDateString;
-    }
-
-    public void setBirthDateString(String birthDateString) {
-        this.birthDateString = birthDateString;
     }
 }
