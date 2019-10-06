@@ -5,33 +5,17 @@
         .module('DemoApp')
         .controller('CreateUserController', CreateUserController);
 
-    CreateUserController.$inject = ['$state', '$scope', '$q', 'UserFactory', 'ToasterService'];
+    CreateUserController.$inject = ['$state', '$scope', '$q', 'UserFactory', 'StateFactory', 'ToasterService'];
 
-    function CreateUserController($state, $scope, $q, UserFactory, ToasterService) {
+    function CreateUserController($state, $scope, $q, UserFactory, StateFactory, ToasterService) {
         var vm = this,
             toasterService = ToasterService;
 
+        vm.pageTitle = 'Create New User';
         vm.submitAdditional = false;
-        vm.today = new Date();
         vm.user = {};
-
-        vm.states = [
-            {
-                name: 'California',
-                abbreviation: 'CA',
-                id: 1
-            },
-            {
-                name: 'Oregon',
-                abbreviation: 'OR',
-                id: 2
-            },
-            {
-                name: 'Washington',
-                abbreviation: 'WA',
-                id: 3
-            }
-        ];
+        vm.states = [];
+        vm.pageLoaded = false;
 
         vm.submitUser = submitUser;
         vm.clearForm = clearForm;
@@ -39,13 +23,30 @@
         initialize();
 
         function initialize() {
+            var promises = {
+                getStates: getStates()
+            };
             if ($state.params.userId !== null) {
-                $q.when(getUser($state.params.userId).then(function (response) {
-                    vm.user = response;
-                }));
-            } else {
-                resetUserProperties();
+                promises.getUser = getUser($state.params.userId);
             }
+            $q.all(promises).then(function(response) {
+                if (response.getUser) {
+                    vm.user = response.getUser;
+                    vm.pageTitle = 'Edit User: ' + vm.user.emailAddress;
+                } else {
+                    resetUserProperties();
+                }
+                vm.states = response.getStates;
+                vm.pageLoaded = true;
+            })
+        }
+
+        function getStates() {
+            return StateFactory.getStates().then(function (response) {
+                return response.data;
+            }, function (error) {
+                toasterService.showToastError('Error: Could not retrieve states');
+            });
         }
 
         function resetUserProperties() {
@@ -57,7 +58,9 @@
                 birthDate: null,
                 streetAddress: null,
                 city: null,
-                state: {},
+                stateDto: {
+                    stateId: null
+                },
                 zipCode: null
             };
         }
@@ -66,9 +69,25 @@
             return UserFactory.getUser(userId).then(function (response) {
                 return response.data;
             }, function(error) {
-                console.log(error);
-                toasterService.showToastError('Error retrieving user details');
+                var message = getErrorMessage(error);
+                if (!message) {
+                    message = 'Error: Could not retrieve user details.'
+                }
+                toasterService.showToastError(message);
             });
+        }
+
+        function getErrorMessage(error) {
+            switch (error.status) {
+                case 404:
+                    return error.data.errors[0];
+                    break;
+                case 409:
+                    return error.data.errorMessage;
+                    break;
+                default:
+                    return null;
+            }
         }
 
         function submitUser() {
@@ -77,11 +96,16 @@
                 toasterService.showToastSuccess('User successfully saved');
                 if (vm.submitAdditional) {
                     clearForm();
+                    vm.pageTitle = "Create New User";
                 } else {
                     $state.go('root.viewUsers');
                 }
             }, function (error) {
-                toasterService.showToastError('Error: Could not save user.');
+                var message = getErrorMessage(error);
+                if (!message) {
+                    message = 'Error: Could not save user.'
+                }
+                toasterService.showToastError(message);
             });
         }
 

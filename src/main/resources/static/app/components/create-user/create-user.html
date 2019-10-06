@@ -1,7 +1,7 @@
 <md-card>
     <md-toolbar>
         <div class="md-toolbar-tools">
-            <h2>Create New User</h2>
+            <h2>{{vm.pageTitle}}</h2>
         </div>
     </md-toolbar>
     <md-card-content>
@@ -63,10 +63,10 @@
                 </md-input-container>
                 <md-input-container>
                     <md-select placeholder="State"
-                               ng-model="vm.user.state"
+                               ng-model="vm.user.stateDto.stateId"
                                required>
-                        <md-option ng-repeat="state in vm.states"
-                                   ng-value="state.id">{{state.abbreviation}}</md-option>
+                        <md-option ng-repeat="state in vm.states | orderBy: 'abbreviation'"
+                                   ng-value="state.stateId">{{state.abbreviation}}</md-option>
                     </md-select>
                 </md-input-container>
                 <md-input-container>
@@ -103,7 +103,7 @@
                 </md-button>
                 <md-button class="md-raised md-primary"
                            ng-click="vm.submitUser()"
-                           ng-disabled="createUserForm.$invalid">
+                           ng-disabled="createUserForm.$invalid || !vm.pageLoaded">
                     Submit
                 </md-button>
                 <md-checkbox ng-model="vm.submitAdditional">Create Additional Users</md-checkbox>

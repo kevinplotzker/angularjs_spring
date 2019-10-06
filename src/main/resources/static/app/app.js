@@ -59,7 +59,8 @@
                     userId: null
                 },
                 resolve: resolve('createUser', [
-                    'app/components/create-user/create.user.controller.js'
+                    'app/components/create-user/create.user.controller.js',
+                    'app/components/create-user/state.factory.js'
                 ])
             })
     }

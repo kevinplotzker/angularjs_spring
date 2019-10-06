@@ -1,5 +1,6 @@
 package com.java.demo.dto;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class UserDto {
@@ -11,7 +12,8 @@ public class UserDto {
     private String streetAddress;
     private String city;
     private String zipCode;
-    private Date birthDate;
+    private LocalDate birthDate;
+    private StateDto stateDto;
 
     public Integer getUserId() {
         return userId;
@@ -69,11 +71,19 @@ public class UserDto {
         this.zipCode = zipCode;
     }
 
-    public Date getBirthDate() {
+    public LocalDate getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(Date birthDate) {
+    public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
+    }
+
+    public StateDto getStateDto() {
+        return stateDto;
+    }
+
+    public void setStateDto(StateDto stateDto) {
+        this.stateDto = stateDto;
     }
 }

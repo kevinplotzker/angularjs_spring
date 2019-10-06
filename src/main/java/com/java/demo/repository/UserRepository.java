@@ -10,6 +10,10 @@ import java.util.Set;
 public interface UserRepository extends CrudRepository<User, Integer> {
 
     Set<User> findAll();
+
+    @Query("select u from User u where u.emailAddress = :emailAddress")
+    User findByEmailAddress(@Param("emailAddress") String emailAddress);
+
     @Query("select u from User u where u.userId = :userId")
     User findOne(@Param("userId") Integer userId);
 }

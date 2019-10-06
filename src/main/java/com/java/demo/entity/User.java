@@ -1,6 +1,7 @@
 package com.java.demo.entity;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -21,13 +22,13 @@ public class User {
     private String streetAddress;
     @Column
     private String city;
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "stateId")
-//    private State state;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "stateId")
+    private State state;
     @Column
     private String zipCode;
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date birthDate;
+    @Column
+    private LocalDate birthDate;
 
     public Integer getUserId() {
         return userId;
@@ -85,11 +86,19 @@ public class User {
         this.zipCode = zipCode;
     }
 
-    public Date getBirthDate() {
+    public LocalDate getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(Date birthDate) {
+    public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
+    }
+
+    public State getState() {
+        return state;
+    }
+
+    public void setState(State state) {
+        this.state = state;
     }
 }

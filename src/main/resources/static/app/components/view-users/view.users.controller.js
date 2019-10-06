@@ -52,7 +52,7 @@
                 },
                 {
                     displayName: 'State',
-                    field: 'state',
+                    field: 'stateDto.name',
                     cellTemplate: cellTemplate,
                     headerTooltip: true,
                     cellTooltip: true
@@ -79,14 +79,6 @@
             };
             $q.all(promises).then(function (response) {
                 vm.usersGrid.data = response.getUsers;
-                vm.usersGrid.data.push({
-                    userId: 0,
-                    firstName: 'joe',
-                    lastName: 'smith',
-                    emailAddress: 'j@j',
-                    state: 'CA',
-                    birthDateString: '2/10/10'
-                })
             });
         }
 
