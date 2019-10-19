@@ -17,8 +17,8 @@ public class HomeController {
 
     @RequestMapping("/")
     public String home() {
-        userService.initializeUsers();
         stateService.initializeStates();
+        userService.initializeUsers();
         return "index.html";
     }
 

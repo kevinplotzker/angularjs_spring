@@ -34,14 +34,22 @@
                     field: 'lastName',
                     cellTemplate: cellTemplate,
                     headerTooltip: true,
-                    cellTooltip: true
+                    cellTooltip: true,
+                    sort: {
+                        direction: uiGridConstants.ASC,
+                        priority: 0
+                    }
                 },
                 {
                     displayName: 'First Name',
                     field: 'firstName',
                     cellTemplate: cellTemplate,
                     headerTooltip: true,
-                    cellTooltip: true
+                    cellTooltip: true,
+                    sort: {
+                        direction: uiGridConstants.ASC,
+                        priority: 1
+                    }
                 },
                 {
                     displayName: 'Email',

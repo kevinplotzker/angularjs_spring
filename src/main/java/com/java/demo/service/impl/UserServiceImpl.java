@@ -55,7 +55,7 @@ public class UserServiceImpl implements UserService {
         if (existingEmailUser != null) {
             if (dto.getUserId() == null) {
                 found = true;
-            } else if (dto.getUserId().intValue() == existingEmailUser.getUserId().intValue()) {
+            } else if (dto.getUserId().intValue() != existingEmailUser.getUserId().intValue()) {
                 found = true;
             }
         }

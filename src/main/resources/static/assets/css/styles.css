@@ -1,15 +1,21 @@
-.header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 64px;
-    width: 100%;
-    z-index: 1000;
-}
+/*.header {*/
+    /*position: fixed;*/
+    /*top: 0;*/
+    /*left: 0;*/
+    /*height: 64px;*/
+    /*width: 100%;*/
+    /*z-index: 1000;*/
+/*}*/
 
-.main-content {
-    margin-top: 64px;
-    overflow-y: auto;
+/*.main-content {*/
+    /*margin-top: 64px;*/
+    /*overflow-y: auto;*/
+/*}*/
+
+.material-header-toolbar {
+    overflow: hidden;
+    height: 100%;
+    margin: 0;
 }
 
 .ng-untouched ~ .md-input-messages-animation {
@@ -22,4 +28,8 @@ md-toast.md-toast-error .md-toast-content {
 }
 md-toast.md-toast-success .md-toast-content {
     background-color: green;
+}
+
+html {
+    overflow: hidden !important;
 }

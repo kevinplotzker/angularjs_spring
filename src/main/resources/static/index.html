@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html sytle="overflow: hidden">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <base href="/">
@@ -20,7 +20,7 @@
         <link rel="stylesheet" href="assets/css/styles.css" />
     </head>
     <body ng-app="DemoApp">
-        <div class="header" ui-view="header"></div>
-        <div class="main-content" ui-view="container"></div>
+        <div ui-view="header"></div>
+        <div style="height: calc(100% - 64px); overflow-y: auto" ui-view="container"></div>
     </body>
 </html>
